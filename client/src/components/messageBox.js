@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import axios from "axios";
 import FlexBetween from "./flexBetween";
 import WidgetWrapper from "./widgetWrapper";
@@ -15,18 +15,26 @@ import UserImage from "./userImage";
 import Badge from "@mui/material/Badge";
 // import state from "../state";
 import {format} from 'timeago.js'
+import {io} from 'socket.io-client'
 
 function MessageBox({ name }) {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const user = useSelector((state) => state.user);
+  console.log("current user",user)
   const conversationId = useSelector((state) => state.conversationId);
   const { palette } = useTheme();
   const light = palette.neutral.light;
   const medium = palette.neutral.medium;
   // const num = [1, 2, 3, 4, 3, 32];
   const [messages, setMessages] = useState();
+ const socket = useRef(io('ws://localhost:8900'))
+ const online = true
+  
 
+  useEffect(()=>{
+    socket.current.emit("addUser",user?._id)
+  },[user])
 
   useEffect(() => {
     const getChat = async () => {
@@ -60,9 +68,9 @@ function MessageBox({ name }) {
     <>
       <WidgetWrapper>
         <FlexBetween>
-          <Badge overlap="circular" badgeContent=" " color="success">
+         {online ? <Badge overlap="circular" badgeContent=" " color="success">
             <UserImage />
-          </Badge>
+          </Badge> :<UserImage />}
           <Typography>{name}</Typography>
           <Typography>Last seen 12:00pm</Typography>
         </FlexBetween>

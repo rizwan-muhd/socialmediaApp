@@ -11,6 +11,7 @@ import {
 } from "@mui/material"
 import FlexBetween from "../../components/flexBetween"
 import Dropzone from 'react-dropzone'
+// import {useDropzone} from 'react-dropzone'
 import UserImage from '../../components/userImage';
 import WidgetWrapper from "../../components/widgetWrapper";
 import { useState,useCallback } from "react";
@@ -30,11 +31,12 @@ const MyPostWidget = ({ picturepath})=>{
     const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
     const mediumMain = palette.neutral.mediumMain
     const medium = palette.neutral.medium
-
-    // const onDrop = useCallback(acceptedFiles => {
-    //     // Do something with the files
-    //   }, [])
-    //   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+   console.log("image",image)
+    const onDrop = useCallback(acceptedFiles => {
+        // Do something with the files
+        console.log("file",acceptedFiles)
+      }, [])
+      // const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
     return (
         <WidgetWrapper>
@@ -57,7 +59,7 @@ const MyPostWidget = ({ picturepath})=>{
             mt="1rem"
             p="1rem"
             >
-            <Dropzone acceptedFiles=".jpg,.jpeg,.png"  onDrop={acceptedFiles => console.log(acceptedFiles)}>
+            <Dropzone acceptedFiles=".jpg,.jpeg,.png"  onDrop={acceptedFiles => setImage(acceptedFiles)}>
             {({getRootProps, getInputProps}) => (
     // <FlexBetween>
       <Box
