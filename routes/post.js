@@ -1,6 +1,6 @@
 const express = require('express')
 const auth = require('../middleware/auth')
-const upload = require("../middleware/imageUpload")
+// const upload = require("../middleware/imageUpload")
 const {addPost,updatePost,deletePost,getMyPosts,getAllPosts} = require("../controllers/post")
 
 const router = express();

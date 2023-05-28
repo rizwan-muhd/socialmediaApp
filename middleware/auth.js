@@ -7,7 +7,7 @@ function auth(req, res, next) {
   try {
     let user1;
     const authHeader = req.headers["authorization"];
-    console.log(authHeader)
+    // console.log(authHeader)
     const token = authHeader && authHeader.split(" ")[1];
     if (!token) {
       return res.status(401).json({ msg: "No Token ,authorization denied" });

@@ -3,7 +3,7 @@ const { generate } = require('otp-generator')
 const router = express()
 const {addUser,login,updateUser,deleteUser,getAllUsers, follow,generateOtp, getUser,getMyUser,unfollow} = require('../controllers/user')
 const auth = require('../middleware/auth')
-const upload = require('../middleware/imageUpload')
+// const upload = require('../middleware/imageUpload')
  
 //post
 router.post('/signUp',addUser)

@@ -28,7 +28,7 @@ import FlexBetween from "../../components/flexBetween";
 import { width } from "@mui/system";
 import Avatar from "@mui/material/Avatar";
 import SimpleDialog from "../../components/dialogueBox";
-import Badge from "@mui/material/Badge";
+import Badge from "@mui/material/Badge"; 
 
 function Navbar() {
   const [isMobileMenuToggled, seIsMobileMenuToggled] = useState(false);
